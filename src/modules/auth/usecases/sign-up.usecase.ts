@@ -29,8 +29,6 @@ export class SignUpUsecase {
         },
       });
     } catch (e) {
-      console.log(e);
-
       if (e instanceof HttpException) throw e;
 
       throw new InternalServerErrorException('Internal server error');
