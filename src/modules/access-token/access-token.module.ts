@@ -6,6 +6,7 @@ import { DatabaseModule } from 'src/database/database.module';
 import { AccessTokenController } from './access-token.controller';
 import { RequestInjectorMiddleware } from 'src/core/middlewares/request.middleware';
 import { CoreModule } from 'src/core/core.module';
+import { ListAccessTokensUsecase } from './usecases/list-access-tokens.usecase';
 
 @Module({
   imports: [DatabaseModule, CoreModule],
@@ -13,6 +14,7 @@ import { CoreModule } from 'src/core/core.module';
   providers: [
     AccessTokenService,
     CreateAccessTokenUsecase,
+    ListAccessTokensUsecase,
     RequestScopedService,
   ],
 })
