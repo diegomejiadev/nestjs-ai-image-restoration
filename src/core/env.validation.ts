@@ -22,6 +22,12 @@ class EnvironmentVariables {
 
   @IsNumber()
   NESTJS_SALT_ROUNDS: number;
+
+  @IsString()
+  NESTJS_JWT_SECRET: string;
+
+  @IsString()
+  NESTJS_JWT_EXPIRE_TIME: string;
 }
 
 export function validate(config: Record<string, unknown>) {
