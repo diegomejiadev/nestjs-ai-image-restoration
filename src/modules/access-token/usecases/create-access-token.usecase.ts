@@ -45,7 +45,7 @@ export class CreateAccessTokenUsecase {
       //* 3. Create the new access token and return it
       return await this.prismaService.accessToken.create({
         data: {
-          token: randomUuid,
+          api_key: randomUuid,
           userId,
         },
       });

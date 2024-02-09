@@ -17,7 +17,7 @@ export class AccessTokenService {
   async createAccessToken(): Promise<
     IResponse<{
       id: number;
-      token: string;
+      api_key: string;
       userId: number;
       createdAt: Date;
       updatedAt: Date;
@@ -32,7 +32,7 @@ export class AccessTokenService {
     IResponse<
       {
         id: number;
-        token: string;
+        api_key: string;
         createdAt: Date;
       }[]
     >

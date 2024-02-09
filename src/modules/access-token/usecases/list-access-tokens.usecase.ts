@@ -17,7 +17,7 @@ export class ListAccessTokensUsecase {
   async handle(): Promise<
     {
       id: number;
-      token: string;
+      api_key: string;
       createdAt: Date;
     }[]
   > {
@@ -33,7 +33,7 @@ export class ListAccessTokensUsecase {
         },
         select: {
           id: true,
-          token: true,
+          api_key: true,
           createdAt: true,
         },
       });
