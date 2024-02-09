@@ -8,6 +8,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SignInUsecase } from './usecases/sign-in.usecase';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -27,7 +29,16 @@ import { PassportModule } from '@nestjs/passport';
       },
     }),
   ],
-  providers: [AuthService, SignUpUsecase, SignInUsecase, JwtStrategy],
+  providers: [
+    AuthService,
+    SignUpUsecase,
+    SignInUsecase,
+    JwtStrategy,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
   controllers: [AuthController],
 })
 export class AuthModule {}
