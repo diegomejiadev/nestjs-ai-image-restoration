@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   HttpException,
   Injectable,
   InternalServerErrorException,
@@ -13,12 +14,24 @@ export class SignUpUsecase {
 
   async handle(body: SignUpEmailDto) {
     try {
-      //* 1. Hashing the DTO password
+      //* 1. Check if the email is already in use
+      const foundUser = await this.prismaService.user.findFirst({
+        where: { email: body.email },
+      });
+
+      //* 1.1. If it's found then send an error
+      if (foundUser)
+        throw new BadRequestException(
+          'The entered email is already in use. Try a different one.',
+        );
+
+      //* 2. Hashing the DTO password
       const hashedPassword = await hashPassword(body.password);
 
-      //* 2. Override the password with the hashedPassword
+      //* 3. Override the password with the hashedPassword
       body.password = hashedPassword;
 
+      //* 4. Create the user
       return this.prismaService.user.create({
         data: { ...body },
         select: {
