@@ -5,6 +5,9 @@ class EnvironmentVariables {
   @IsNumber()
   NESTJS_PORT: number;
 
+  @IsNumber()
+  NESTJS_ACCESS_TOKENS_LIMIT_SIZE: number;
+
   @IsString()
   DATABASE_USER: string;
 
