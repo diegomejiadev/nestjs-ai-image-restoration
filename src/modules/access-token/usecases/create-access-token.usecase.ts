@@ -14,14 +14,13 @@ export class CreateAccessTokenUsecase {
   constructor(
     private configService: ConfigService,
     private requestService: RequestScopedService,
-   private prismaService: PrismaService,
+    private prismaService: PrismaService,
   ) {}
 
   async handle() {
     try {
       //* 1. Extract the userId from the request
       const request = this.requestService.getRequest();
-      console.log(request)
       const userId = request['user']['userId'];
 
       //* 2. Check how many access tokens has
