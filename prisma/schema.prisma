@@ -21,7 +21,7 @@ model User {
 
 model AccessToken {
   id        Int        @id @default(autoincrement())
-  token     String     @unique
+  api_key     String     @unique
   User      User?      @relation(fields: [userId], references: [id])
   userId    Int?
   requests  Requests[]
